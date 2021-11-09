@@ -9,6 +9,8 @@ public class Hangman {
 
     private static Hangman singleton = new Hangman();
 
+    private GameStatus status = GameStatus.GAME_START;
+
     private List<String> words;
 
     public void readFile() throws IOException{
