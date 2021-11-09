@@ -1,3 +1,5 @@
+enum GameStatus { GAME_START, RESOLVE, GAME_OVER, WIN }
+
 public class Hangman {
 
     private static Hangman singleton = new Hangman();
