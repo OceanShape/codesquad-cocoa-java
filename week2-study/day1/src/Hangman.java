@@ -14,6 +14,10 @@ public class Hangman {
 
     private List<String> words;
 
+    private String targetWord;
+
+    private String solvedWord;
+
     public void readFile() throws IOException{
         words = Files.readAllLines(Paths.get(System.getProperty("user.dir") + "\\week2-study\\day1\\src" + "\\word.txt"));
         for (String s : words) {
@@ -28,7 +32,11 @@ public class Hangman {
         }
     }
 
-    public void selectWord() { }
+    public void selectWord() {
+        int idx = (int) (Math.random() * (words.size() - 1));
+        targetWord = words.get(idx);
+        solvedWord = "_".repeat(targetWord.length());
+    }
 
     public void updateStatus(char input) { }
 
