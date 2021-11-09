@@ -46,7 +46,7 @@ public class Game2048 {
                 origin[i][j] = sc.nextInt();
 
         int mx = 0;
-        for(int com = 0; com < 1024; com++){
+        for(int com = 0; com < 1024; ++com){
             for(int i = 0; i < n; ++i)
                 System.arraycopy(origin[i], 0, testCase[i], 0, n);
             int tmp = com;
