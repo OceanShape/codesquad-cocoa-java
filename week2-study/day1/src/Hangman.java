@@ -50,6 +50,29 @@ public class Hangman {
         return ch;
     }
 
+    // 1. 글자 존재 참/거짓 여부
+    // 2. solvedWord 변경
+    public boolean isSpellDetected(char ch){
+        boolean isDetected = false;
+        StringBuilder sb = new StringBuilder();
+        char input = toUpperCustom(ch);
+        char[] targetWordArray = targetWord.toUpperCase().toCharArray();
+        char[] targetWordUpperArray = targetWord.toUpperCase().toCharArray();
+
+        for (int i = 0; i < targetWord.length(); ++i) {
+            if (targetWordUpperArray[i] == input) {
+                isDetected = true;
+                sb.append(targetWordArray[i]);
+            } else {
+                sb.append('_');
+            }
+        }
+
+        solvedWord = sb.toString();
+
+        return isDetected;
+    }
+
     public void updateStatus(char input) { }
 
     public void renderScreen() { }
