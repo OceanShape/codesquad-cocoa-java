@@ -73,6 +73,18 @@ public class Hangman {
         return isDetected;
     }
 
+    public boolean isAllSpellSolved() {
+        char[] solvedWordArray = solvedWord.toCharArray();
+
+        for (char c : solvedWordArray) {
+            if (c == '_') {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public void updateStatus(char input) { }
 
     public void renderScreen() { }
