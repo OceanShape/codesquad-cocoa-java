@@ -43,6 +43,13 @@ public class Hangman {
         solvedWord = "_".repeat(targetWord.length());
     }
 
+    public char toUpperCustom(char ch) {
+        if ((97 <= (int) ch) && ((int) ch <= 122)) {
+            return (char)((int) ch - 32);
+        }
+        return ch;
+    }
+
     public void updateStatus(char input) { }
 
     public void renderScreen() { }
