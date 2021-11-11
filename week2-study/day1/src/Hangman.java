@@ -18,6 +18,8 @@ public class Hangman {
 
     private String solvedWord;
 
+    private int life;
+
     public void readFile(){
         try {
             words = Files.readAllLines(Paths.get(System.getProperty("user.dir") + "\\week2-study\\day1\\src" + "\\word.txt"));
@@ -85,7 +87,18 @@ public class Hangman {
         return true;
     }
 
-    public void updateStatus(char input) { }
+    public void updateStatus(char ch) {
+
+        if (!isSpellDetected(ch)) {
+            --life;
+        }
+
+        if (life == 0) {
+            status = GameStatus.GAME_OVER;
+        } else if (isAllSpellSolved()) {
+            status = GameStatus.WIN;
+        }
+    }
 
     public void renderScreen() { }
 
