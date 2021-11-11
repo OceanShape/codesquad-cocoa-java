@@ -18,17 +18,22 @@ public class Hangman {
 
     private String solvedWord;
 
-    public void readFile() throws IOException{
-        words = Files.readAllLines(Paths.get(System.getProperty("user.dir") + "\\week2-study\\day1\\src" + "\\word.txt"));
-        for (String s : words) {
-            if (s.length() >= 46) {
-                throw new IOException("Error: word [" + s + "] is too long");
-            }
-            for (char c : s.toCharArray()) {
-                if (!Character.isAlphabetic(c)) {
-                    throw new IOException("Error: word [" + s + "] is invalid");
+    public void readFile(){
+        try {
+            words = Files.readAllLines(Paths.get(System.getProperty("user.dir") + "\\week2-study\\day1\\src" + "\\word.txt"));
+
+            for (String s : words) {
+                if (s.length() >= 46) {
+                    throw new IllegalArgumentException("Error: word [" + s + "] is too long");
+                }
+                for (char c : s.toCharArray()) {
+                    if (!Character.isAlphabetic(c)) {
+                        throw new IllegalArgumentException("Error: word [" + s + "] is invalid");
+                    }
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -62,7 +67,7 @@ public class Hangman {
                 renderScreen();
 
             }
-        } catch (IOException e) {
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
     }
