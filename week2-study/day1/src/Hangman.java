@@ -100,7 +100,31 @@ public class Hangman {
         }
     }
 
-    public void renderScreen() { }
+    public void renderScreen() {
+        if (status == GameStatus.RESOLVE) {
+            System.out.println("============================================================");
+            System.out.println("word: " + solvedWord);
+            System.out.println("============================================================");
+        } else if (status == GameStatus.GAME_START) {
+            System.out.println("============================================================");
+            System.out.println("====================PRESS ENTER TO START====================");
+            System.out.println("============================================================");
+        } else if (status == GameStatus.WIN) {
+            System.out.println("============================================================");
+            System.out.println("==========================YOU  WIN==========================");
+            System.out.println("=======================CONTINUE(Y/N)?=======================");
+            System.out.println("============================================================");
+        } else if (status == GameStatus.LOSE) {
+            System.out.println("============================================================");
+            System.out.println("==========================YOU LOSE==========================");
+            System.out.println("=======================CONTINUE(Y/N)?=======================");
+            System.out.println("============================================================");
+        } else if (status == GameStatus.GAME_OVER) {
+            System.out.println("============================================================");
+            System.out.println("=========================GAME  OVER=========================");
+            System.out.println("============================================================");
+        }
+    }
 
     public void play() {
         try {
