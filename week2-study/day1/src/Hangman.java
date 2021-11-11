@@ -4,7 +4,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
-enum GameStatus { GAME_START, RESOLVE, GAME_OVER, WIN }
+enum GameStatus { GAME_START, RESOLVE, GAME_OVER, WIN, LOSE }
 
 public class Hangman {
 
