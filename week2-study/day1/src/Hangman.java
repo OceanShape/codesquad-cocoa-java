@@ -66,7 +66,11 @@ public class Hangman {
                 isDetected = true;
                 sb.append(targetWordArray[i]);
             } else {
-                sb.append('_');
+                if (solvedWord.charAt(i) != '_') {
+                    sb.append(solvedWord.charAt(i));
+                } else {
+                    sb.append('_');
+                }
             }
         }
 
