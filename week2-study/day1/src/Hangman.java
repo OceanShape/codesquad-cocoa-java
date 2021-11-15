@@ -97,10 +97,13 @@ public class Hangman {
             --life;
         }
 
-        if (life == 0) {
-            status = GameStatus.GAME_OVER;
-        } else if (isAllSpellSolved()) {
-            status = GameStatus.WIN;
+        if (life == 0 || isAllSpellSolved()) {
+            if (life == 0) {
+                status = GameStatus.LOSE;
+            } else {
+                status = GameStatus.WIN;
+            }
+            solvedWord =  "answer is " + targetWord;
         }
     }
 
