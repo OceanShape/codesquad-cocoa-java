@@ -129,23 +129,43 @@ public class Hangman {
     public void play() {
         try {
             readFile();
+
             // Game loop
+            Scanner sc = new Scanner(System.in);
             while (true) {
                 if (status == GameStatus.GAME_START) {
                     selectWord();
                     renderScreen();
+                    sc.next();
                     status = GameStatus.RESOLVE;
-                } else if (status == GameStatus.GAME_OVER) {
-                    break;
+                } else if (status == GameStatus.WIN || status == GameStatus.LOSE) {
+                    renderScreen();
+                    char input = sc.next().charAt(0);
+                    boolean isGameOver = false;
+                    while (true) {
+                        if (input == 'Y' || input == 'y') {
+                            isGameOver = true;
+                            break;
+                        } else if (input == 'N' || input == 'n') {
+                            break;
+                        }
+
+                    }
+
+                    if (isGameOver) {
+                        status = GameStatus.GAME_OVER;
+                        renderScreen();
+                        break;
+                    }
                 }
 
-                Scanner sc = new Scanner(System.in);
                 char input = sc.next().charAt(0);
 
                 updateStatus(input);
                 renderScreen();
-
             }
+
+            sc.close();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
