@@ -58,7 +58,7 @@ public class Hangman {
         boolean isDetected = false;
         StringBuilder sb = new StringBuilder();
         char input = toUpperCustom(ch);
-        char[] targetWordArray = targetWord.toUpperCase().toCharArray();
+        char[] targetWordArray = targetWord.toCharArray();
         char[] targetWordUpperArray = targetWord.toUpperCase().toCharArray();
 
         for (int i = 0; i < targetWord.length(); ++i) {
