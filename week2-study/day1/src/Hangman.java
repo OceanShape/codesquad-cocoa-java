@@ -149,19 +149,15 @@ public class Hangman {
                     renderScreen();
                     char input = sc.next().charAt(0);
                     boolean isGameOver = false;
-                    while (true) {
-                        if (input == 'Y' || input == 'y') {
-                            isGameOver = true;
-                            break;
-                        } else if (input == 'N' || input == 'n') {
-                            break;
-                        }
-
+                    if (input == 'Y' || input == 'y') {
+                        status = GameStatus.GAME_START;
+                    } else if (input == 'N' || input == 'n') {
+                        isGameOver = true;
                     }
 
                     if (isGameOver) {
                         status = GameStatus.GAME_OVER;
-                        renderScreen();
+                        renderScreen(status);
                         break;
                     }
                 }
