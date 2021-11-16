@@ -107,26 +107,26 @@ public class Hangman {
         }
     }
 
-    public void renderScreen() {
-        if (status == GameStatus.RESOLVE) {
+    public void renderScreen(GameStatus stat) {
+        if (stat == GameStatus.RESOLVE) {
             System.out.println("============================================================");
-            System.out.println("word: " + solvedWord);
+            System.out.println("word: " + solvedWord + "(life: " + life + ')');
             System.out.println("============================================================");
-        } else if (status == GameStatus.GAME_START) {
+        } else if (stat == GameStatus.GAME_START) {
             System.out.println("============================================================");
             System.out.println("====================PRESS ENTER TO START====================");
             System.out.println("============================================================");
-        } else if (status == GameStatus.WIN) {
+        } else if (stat == GameStatus.WIN) {
             System.out.println("============================================================");
             System.out.println("==========================YOU  WIN==========================");
             System.out.println("=======================CONTINUE(Y/N)?=======================");
             System.out.println("============================================================");
-        } else if (status == GameStatus.LOSE) {
+        } else if (stat == GameStatus.LOSE) {
             System.out.println("============================================================");
             System.out.println("==========================YOU LOSE==========================");
             System.out.println("=======================CONTINUE(Y/N)?=======================");
             System.out.println("============================================================");
-        } else if (status == GameStatus.GAME_OVER) {
+        } else if (stat == GameStatus.GAME_OVER) {
             System.out.println("============================================================");
             System.out.println("=========================GAME  OVER=========================");
             System.out.println("============================================================");
@@ -141,13 +141,20 @@ public class Hangman {
             Scanner sc = new Scanner(System.in);
             while (true) {
                 if (status == GameStatus.GAME_START) {
+                    renderScreen(status);
                     selectWord();
-                    renderScreen();
-                    sc.next();
+                    sc.nextLine();
+                    life = 10;
                     status = GameStatus.RESOLVE;
                 } else if (status == GameStatus.WIN || status == GameStatus.LOSE) {
-                    renderScreen();
-                    char input = sc.next().charAt(0);
+                    renderScreen(GameStatus.RESOLVE);
+                    renderScreen(status);
+                    String inputStr;
+                    do {
+                        inputStr = sc.nextLine();
+                    } while (inputStr.length() != 1);
+                    char input = inputStr.charAt(0);
+
                     boolean isGameOver = false;
                     if (input == 'Y' || input == 'y') {
                         status = GameStatus.GAME_START;
@@ -160,12 +167,11 @@ public class Hangman {
                         renderScreen(status);
                         break;
                     }
+                } else if (status == GameStatus.RESOLVE) {
+                    renderScreen(status);
+                    char input = sc.next().charAt(0);
+                    updateStatus(input);
                 }
-
-                char input = sc.next().charAt(0);
-
-                updateStatus(input);
-                renderScreen();
             }
 
             sc.close();
