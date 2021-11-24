@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -22,5 +23,13 @@ public class GUITest {
             public void windowActivated(WindowEvent e){}
             public void windowDeactivated(WindowEvent e){}
         });
+
+        Panel panel = new Panel() {
+            Image image = new ImageIcon(Main.class.getResource( "./Aptenodytes forsteri sample.jpg")).getImage();
+            public void paint(Graphics g) {
+                g.drawImage(image, 0, 0, null);
+            }
+        };
+        f.add(panel);
     }
 }
