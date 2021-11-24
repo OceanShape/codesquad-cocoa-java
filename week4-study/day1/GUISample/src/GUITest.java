@@ -27,7 +27,9 @@ public class GUITest {
         Panel panel = new Panel() {
             Image image = new ImageIcon(Main.class.getResource( "./Aptenodytes forsteri sample.jpg")).getImage();
             public void paint(Graphics g) {
-                g.drawImage(image, 0, 0, null);
+                int w = f.getWidth() / 2 - image.getWidth(null) / 2;
+                int h = f.getHeight() / 2 - image.getHeight(null) / 2;
+                g.drawImage(image, w, h, null);
             }
         };
         f.add(panel);
